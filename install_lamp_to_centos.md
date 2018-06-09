@@ -1,6 +1,6 @@
 # 安装 LAMP 环境到 CentOS 7
 
-## 1.系统初始更新
+## 1. 系统初始更新
 #### 1.1 执行更新
 ```
 # yum update -y
@@ -119,4 +119,4 @@ $cfg['Servers'][$i]['auth_type'] = 'http';
 在浏览器地址栏输入 http://ip_address/phpmyadmin/ <br>
 使用 root 及之前设置的 MySQL root 密码登录
 
-# ...done!
+# _...done!_
