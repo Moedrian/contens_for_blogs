@@ -6,8 +6,7 @@
   * Windows 10
   * Your own WiFi
   * An Ethenet cable
-* Why CentOS? Because on April 3rd 2019 Jack encounter a bizarre bug on Raspbian.
-* After installing php 7.2, he rebooted it and he could never connect it via ssh WiFi neither WiFI nor Ethenet cable...
+* Why CentOS? Because on April 3rd 2019 Jack encountered a bizarre bug on Raspbian. After installing php 7.2, he rebooted it and he could never connect it via ssh by neither WiFI nor Ethenet cable...
 * Damn it!
 * **And the Official wiki is [here](https://wiki.centos.org/SpecialInterestGroup/AltArch/armhfp)**
 
@@ -37,7 +36,7 @@
 
 ## 5. A little server
 
-If you browse the package [list](http://mirror.centos.org/altarch/7/os/armhfp/Packages/) of CentOS-altarch-armhfp, and there is no php 7 available. But...
+If you browse the package [list](http://mirror.centos.org/altarch/7/os/armhfp/Packages/) of CentOS-altarch-armhfp, and there is no php 7 available. But I found a solution [here](https://seven.centos.org/2018/01/php-7-2-for-centos-7-armhfp/)
 
 ```cmd
 cat > /etc/yum.repos.d/epel.repo << EOF
