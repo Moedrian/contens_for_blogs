@@ -26,15 +26,52 @@
 5. Start a ssh session, use ```root@xxx.xxx.xxx.xxx``` and the password is ```centos```
 6. ```less README```, follow its advice, so just type ```rootfs-expand```. Very user-friendly, isn't it?
 
-## Welcome to 1970.1.1, WiFi
+## 3. Welcome to 1969, WiFi
 
-1. It seems that the newest version of ARM CentOS has solve WiFi firmware distribution dilemma, so just type ```systemctl start network.service``` and, hola, WiFi is now enabled.
+1. It seems that the newest version of ARM CentOS has resolved WiFi firmware distribution dilemma, so just type ```systemctl start network.service``` and, hola, WiFi is now enabled.
 2. Type ```nmcli d``` and wlan0 is here.
-3. Now type ```nmtui``` and choose activate a connection, it's very easy to join the WiFi.
+3. Now type ```nmtui``` and choose ```Activate a connection```, it's very easy to join the WiFi.
 4. Type ```date```, damn it.
 
-## Real time
+## 4. Add a Real Time Clock
 
-## A little server
+## 5. A little server
 
-* It's 2019 now and Raspbian still uses php 7.0! _confused screaming_
+If you browse the package [list](http://mirror.centos.org/altarch/7/os/armhfp/Packages/) of CentOS-altarch-armhfp, and there is no php 7 available. But...
+
+```cmd
+cat > /etc/yum.repos.d/epel.repo << EOF
+[epel]
+name=Epel rebuild for armhfp
+baseurl=https://armv7.dev.centos.org/repodir/epel-pass-1/
+enabled=1
+gpgcheck=0
+EOF
+```
+
+then
+
+```cmd
+cat > /etc/yum.repos.d/php72-testing.repo << EOF
+[php72-testing]
+name=Remi php72 rebuild for armhfp
+baseurl=https://armv7.dev.centos.org/repodir/community-php72-testing/
+enabled=1
+gpgcheck=0
+EOF
+```
+
+finally
+
+```cmd
+cat > /etc/yum.repos.d/remi.repo << EOF
+[remi]
+name=Remi's RPM repository for Enterprise Linux 7 - $basearch
+mirrorlist=http://cdn.remirepo.net/enterprise/7/remi/mirror
+enabled=1
+gpgcheck=1
+gpgkey=https://rpms.remirepo.net/RPM-GPG-KEY-remi
+EOF
+```
+
+Hola! The rest is easy.
