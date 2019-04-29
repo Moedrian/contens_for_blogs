@@ -25,4 +25,4 @@ The command _appends_ `username` to _Group_ wheel in which users have sudo privi
 
 2. Locate the cursor to `#PermitRootLogin`, uncomment it and set its value to `no`, save and quit.
 
-3. Use `sudo /etc/init.d/sshd restart` to reload it.
+3. Use `sudo service sshd restart` to reload it.
