@@ -2,7 +2,6 @@
 
 ## Before you start...
 
-* '#' represents root user / $ sudo
 * Basic usage of vim, if none, use nano instead
 
 ## 1. Install essential repositories and editor
@@ -10,7 +9,7 @@
 ### 1.1 Update
 
 ```cmd
-# yum update
+$ sudo yum update
 ```
 
 ### 1.2 Install EPEL repository
@@ -18,7 +17,7 @@
 > Extra Packages for Enterprise Linux (or EPEL) is a Fedora Special Interest Group that creates, maintains, and manages a high quality set of additional packages for Enterprise Linux, including, but not limited to, Red Hat Enterprise Linux (RHEL), CentOS and Scientific Linux (SL), Oracle Linux (OL).
 
 ```cmd
-# yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
 ### 1.2.Install Remi's RPM repository
@@ -26,31 +25,31 @@
 > Remi is a repository providing the latest versions of the PHP stack, full featured, and some other software, to the Fedora and Enterprise Linux (RHEL, CentOS, Oracle, Scientific Linux, ...) users.
 
 ```cmd
-# yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+$ sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
 ### 1.4 Check repolist
 
 ```cmd
-# yum repolist
+$ sudo yum repolist
 ```
 
 ### 1.5 Install yum-utils package (for the yum-config-manager command)
 
 ```cmd
-# yum install yum-utils -y
+$ sudo yum install yum-utils -y
 ```
 
 ### 1.5 Update it again
 
 ```cmd
-# yum update
+$ sudo yum update
 ```
 
 ### 1.6 Install Vim
 
 ```cmd
-# yum install vim -y
+$ sudo yum install vim -y
 ```
 
 ## 2. Apache
@@ -58,9 +57,9 @@
 ### 2.1 Install Apache and enable httpd service
 
 ```cmd
-# yum install httpd -y
-# systemctl start httpd.service
-# systemctl enable httpd.service
+$ sudo yum install httpd -y
+$ sudo systemctl start httpd.service
+$ sudo systemctl enable httpd.service
 ```
 
 ### 2.2 Test Apache Installation
@@ -70,7 +69,7 @@ Enter http://your_ip_address/ in your brower's address bar, if you can see a pag
 * If your enabled firewalld then enter
 
 ```cmd
-# firewall-cmd --list-all
+$ sudo firewall-cmd --list-all
 ```
 
 The output may be like this
@@ -94,8 +93,8 @@ public (active)
 Enter this command and reload it
 
 ```cmd
-# firewall-cmd --add-service=http --permanent
-# firewall-cmd --reload
+$ sudo firewall-cmd --add-service=http --permanent
+$ sudo firewall-cmd --reload
 ```
 
 * Or you may refer to port management page via your server vendor
@@ -107,7 +106,7 @@ Enter this command and reload it
 Enter command:
 
 ```cmd
-# vim /etc/yum.repos.d/MariaDB.repo
+$ sudo vim /etc/yum.repos.d/MariaDB.repo
 ```
 
 Then type or copy & paste these text into it:
@@ -126,15 +125,15 @@ You can always find newest contents [here](https://downloads.mariadb.org/mariadb
 ### 3.2 Install MariaDB and enable its service
 
 ```cmd
-# yum install MariaDB-server MariaDB-client -y
-# systemctl start mariadb.service
-# systemctl enable mariadb.service
+$ sudo yum install MariaDB-server MariaDB-client -y
+$ sudo systemctl start mariadb.service
+$ sudo systemctl enable mariadb.service
 ```
 
 ### 3.3 Config MariaDB
 
 ```cmd
-# mysql_secure_installation
+$ sudo mysql_secure_installation
 ```
 
 Follow the instructions appearing on the screen, set a root password and forbid root remote login
@@ -144,25 +143,25 @@ Follow the instructions appearing on the screen, set a root password and forbid 
 ### 4.1 Config repo
 
 ```cmd
-# yum-config-manager --enable remi-php73
+$ sudo yum-config-manager --enable remi-php73
 ```
 
 ### 4.2 Install php, etc
 
 ```cmd
-# yum install php-curl php-ldap php-zip php-fileinfo php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
+$ sudo yum install php-curl php-ldap php-zip php-fileinfo php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
 ```
 
 ### 4.3 Reboot Apache
 
 ```cmd
-# systemctl restart httpd.service
+$ sudo systemctl restart httpd.service
 ```
 
 ### 4.4 Test php installation
 
 ```cmd
-# echo "<?php phpinfo();>" > /var/www/html/index.php
+$ sudo echo "<?php phpinfo(); ?>" > /var/www/html/index.php
 ```
 
 Enter http://your_ip_address/index.php in brower's address bar, if successful, you can see a long page listing php's infomation
@@ -172,7 +171,7 @@ Enter http://your_ip_address/index.php in brower's address bar, if successful, y
 ### 5.1 Install
 
 ```cmd
-# yum install phpMyAdmin -y
+$ sudo yum install phpMyAdmin -y
 ```
 
 ### 5.2 Config phpMyAdmin
@@ -180,7 +179,7 @@ Enter http://your_ip_address/index.php in brower's address bar, if successful, y
 Open config file
 
 ```cmd
-# vi /etc/httpd/conf.d/phpMyAdmin.conf
+$ sudo vim /etc/httpd/conf.d/phpMyAdmin.conf
 ```
 
 Add these codes, then save and quit
@@ -196,7 +195,7 @@ Add these codes, then save and quit
 Change authentication type to http
 
 ```cmd
-# vim /etc/phpMyAdmin/config.inc.php
+$ sudo vim /etc/phpMyAdmin/config.inc.php
 ```
 
 locate here, then change texts like below
@@ -212,7 +211,7 @@ $cfg['Servers'][$i]['auth_type'] = 'http';
 ### 5.3 Restart Apache to apply changes
 
 ```cmd
-# systemctl restart httpd.service
+$ sudo systemctl restart httpd.service
 ```
 
 ### 5.4 Test phpMyAdmin installation
