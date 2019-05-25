@@ -17,6 +17,11 @@
  * @since File availability since version xxx
  */
 
+require __DIR__ . '/../vendor/autoload.php';
+
+use xx\xx;
+use xx\xxx\xx;
+
 ?>
 ```
 
@@ -35,17 +40,28 @@
 class JoJo
 {
     /**
-     * 
+     * The generation of JoJo family
+	 * 
+	 * Potential values are 1-7
+	 *
+	 * @var int
      */
     public $generation;
 
+	/**
+	 * The full name of JoJo
+	 *
+	 * @var string
+	 */
     public $name;
 
     /**
+	 * @var bool $stand indicates the availibility of stand power
+	 * @var bool $hamon indicates the availibility of hamon energy 
      */
-    public bool $stand;
+    public $stand, $hamon;
 
-    public bool $hamon;
+
     /**
      * Generates stand for JoJo
      *
