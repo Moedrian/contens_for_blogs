@@ -1,0 +1,27 @@
+" No backup and swap files
+set nobackup
+set noundofile
+set noswapfile
+
+" system-widely
+set nocompatible
+
+" appearance
+set number
+set tabstop=4
+set softtabstop=4
+set expandtab
+set ruler
+
+" editing
+syntax on
+set wrap
+set showmode
+set showcmd
+set wildmenu " visual autocomplete for command menu
+set lazyredraw
+set foldenable
+
+" searching
+set incsearch
+set hlsearch

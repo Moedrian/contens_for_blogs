@@ -11,5 +11,16 @@
 
 ## CentOS Server Configuration
 
-* [Install LAMP web stack on CentOS 7 64 Bit](CentOSServer/install_lamp_to_centos.md)
+* [Install LAMP Web Stack on CentOS 7 64 Bit](CentOSServer/install_lamp_to_centos.md)
 * [Secure the Server](CentOSServer/secure_server.md)
+
+## Workplace Settings
+
+* [Git Commands Alias](WorkplaceSettings/git_alias.md)
+* [Vimrc](WorkplaceSettings/vimrc)
+
+## ~~Code~~ Golden Experience
+
+### PHP
+
+* [PHPDocumentor tags]
