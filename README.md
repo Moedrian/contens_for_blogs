@@ -9,10 +9,10 @@
 
 * [Filesystem Hierarchy](LinuxFAQ/linux_directories.md)
 
-## CentOS Server Configuration
+## Server Configuration
 
-* [Install LAMP Web Stack on CentOS 7 64 Bit](CentOSServer/install_lamp_to_centos.md)
-* [Secure the Server](CentOSServer/secure_server.md)
+* [Install LAMP Web Stack on CentOS 7 64 Bit](ServerConfig/install_lamp_to_centos.md)
+* [Secure the Server](ServerConfig/secure_server.md)
 
 ## Workplace Settings
 
@@ -23,4 +23,4 @@
 
 ### PHP
 
-* [PHPDocumentor tags](CodeExperience/PHP/PHPComments.md)
+* [PHPDocumentor tags](CodeExperience/php/PHPComments.md)

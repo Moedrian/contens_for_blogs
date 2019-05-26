@@ -7,7 +7,7 @@
 * This file is based on
   * Windows 10
   * Your own WiFi
-  * An Ethenet cable
+  * An Ethernet cable
 * Why CentOS? Because on April 3rd 2019 Jack encountered a bizarre bug on Raspbian. After installing php 7.2, he rebooted it and he could never connect it via ssh by neither WiFI nor Ethenet cable...
 * Damn it!
 * **And the Official wiki is [here](https://wiki.centos.org/SpecialInterestGroup/AltArch/armhfp)**
@@ -20,20 +20,21 @@
 
 ## 2. Boot it, connect it, and expand it
 
-1. Find an Ethenet cable and connect the pi to PC.
+1. Find an Ethernet cable and connect the pi to PC.
 2. Enable network sharing in Settings.
 3. Open some cmd software and type `arp -a`.
 4. Find the IP address corresponding to Pi's MAC.
 5. Start a ssh session, use `root@xxx.xxx.xxx.xxx` and the password is `centos`.
 6. `less README`, follow its advice, so just type `rootfs-expand`. Very user-friendly, isn't it?
-7. By the way, it's not a good idea to use root to log in, so I suggest reading [this file](../CentOSServer/secure_server.md) to add another user that has sudo privilege.
+7. By the way, it's not a good idea to use root to log in, so I suggest reading [this file](../ServerConfig/secure_server.md) to add another user that has sudo privilege.
 
 ## 3. Welcome to 1969, WiFi
 
 1. It seems that the newest version of ARM CentOS has resolved WiFi firmware distribution dilemma, so just type `systemctl start network.service` and, hola, WiFi is now enabled.
 2. Type `nmcli d` and wlan0 is here.
 3. Now type `nmtui` and choose `Activate a connection`, it's very easy to join the WiFi.
-4. Type `date`, damn it.
+4. After connecting to WiFi, type `sudo yum update -y` to update the system.
+5. Type `timedatectl list-timezones | grep Asia` to check the time zone, then, for example, type `sudo timedatectl set-timezone Asia/Shanghai` to set the proper time zone for your area.
 
 ## 4. Add a Real Time Clock to Raspberry Pi
 
@@ -54,10 +55,9 @@ And connect
 
 ![pi gpio](https://www.raspberrypi-spy.co.uk/wp-content/uploads/2012/06/Raspberry-Pi-GPIO-Layout-Model-B-Plus-rotated-2700x900-1024x341.png)
 
-Connect Pi via ssh, enter `sudo yum install i2ctools -y` to install i2ctools. Then enter `sudo vim /boot/config.txt`, add these two lines to enable i2c
+Connect Pi via ssh, enter `sudo yum install i2c-tools -y` to install i2c-tools. Then enter `sudo vim /boot/config.txt`, add these two lines to enable i2c
 
 ```config
-dtparam=i2c_arm=on
 dtoverlay=i2c-rtc, ds3231
 ```
 
