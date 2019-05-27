@@ -138,6 +138,19 @@ $ sudo mysql_secure_installation
 
 Follow the instructions appearing on the screen, set a root password and forbid root remote login
 
+### 3.4 Open port for mysql
+
+```cmd
+$ sudo firewall-cmd --get-active-zones
+```
+
+> Which could print a single public zone or a few, like *public* and *dmz*. Run the command below for any zone shown on the screen, replacing `<zone>` and `<mysql_port>` with your system’s current setup:
+
+```cmd
+$ sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
+$ sudo firewall-cmd --reload
+```
+
 ## 4. PHP 7.3
 
 ### 4.1 Config repo
