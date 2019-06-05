@@ -14,7 +14,11 @@ $ sudo yum update
 
 ### 1.2 Install EPEL repository
 
-> Extra Packages for Enterprise Linux (or EPEL) is a Fedora Special Interest Group that creates, maintains, and manages a high quality set of additional packages for Enterprise Linux, including, but not limited to, Red Hat Enterprise Linux (RHEL), CentOS and Scientific Linux (SL), Oracle Linux (OL).
+> Extra Packages for Enterprise Linux (or EPEL) is a Fedora Special
+> Interest Group that creates, maintains, and manages a high quality 
+>set of additional packages for Enterprise Linux, including, but not 
+>limited to, Red Hat Enterprise Linux (RHEL), CentOS and Scientific 
+>Linux (SL), Oracle Linux (OL).
 
 ```cmd
 $ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -22,13 +26,15 @@ $ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
 
 ### 1.2.Install Remi's RPM repository
 
-> Remi is a repository providing the latest versions of the PHP stack, full featured, and some other software, to the Fedora and Enterprise Linux (RHEL, CentOS, Oracle, Scientific Linux, ...) users.
+> Remi is a repository providing the latest versions of the PHP stack, 
+>full featured, and some other software, to the Fedora and Enterprise 
+>Linux (RHEL, CentOS, Oracle, Scientific Linux, ...) users.
 
 ```cmd
 $ sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
-### 1.4 Check repolist
+### 1.4 Check repo list
 
 ```cmd
 $ sudo yum repolist
@@ -64,7 +70,9 @@ $ sudo systemctl enable httpd.service
 
 ### 2.2 Test Apache Installation
 
-Enter http://your_ip_address/ in your brower's address bar, if you can see a page reading 'It works' then we could proceed to next step. If not, then the 80 port isn't open yet.
+Enter http://your_ip_address/ in your browser's address bar, if you can 
+see a page reading 'It works' then we could proceed to next step. If not, 
+then the 80 port, which is for http, may be closed by default
 
 * If your enabled firewalld then enter
 
@@ -136,7 +144,8 @@ $ sudo systemctl enable mariadb.service
 $ sudo mysql_secure_installation
 ```
 
-Follow the instructions appearing on the screen, set a root password and forbid root remote login
+Follow the instructions appearing on the screen, set a root password 
+and forbid root remote login for security
 
 ### 3.4 Open port for mysql
 
@@ -144,7 +153,9 @@ Follow the instructions appearing on the screen, set a root password and forbid 
 $ sudo firewall-cmd --get-active-zones
 ```
 
-> Which could print a single public zone or a few, like *public* and *dmz*. Run the command below for any zone shown on the screen, replacing `<zone>` and `<mysql_port>` with your system’s current setup:
+> Which could print a single public zone or a few, like *public* and 
+>*dmz*. Run the command below for any zone shown on the screen, replacing 
+>`<zone>` and `<mysql_port>` with your system’s current setup:
 
 ```cmd
 $ sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
@@ -159,13 +170,24 @@ $ sudo firewall-cmd --reload
 $ sudo yum-config-manager --enable remi-php73
 ```
 
-### 4.2 Install php, etc
+### 4.2 Install php and php extensions
 
-```cmd
-$ sudo yum install php-curl php-ldap php-zip php-fileinfo php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
+Choose the modules you need for your projects:
+
+```bash
+$ sudo yum install php-curl php-ldap php-zip php-fileinfo php-opcache \
+php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb \
+php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring \
+php-mcrypt php-xml -y
 ```
 
-### 4.3 Reboot Apache
+And don't forget the composer, the dependency manager
+
+```bash
+$ sudo yum install composer -y
+```
+
+### 4.3 Restart Apache
 
 ```cmd
 $ sudo systemctl restart httpd.service
@@ -177,7 +199,8 @@ $ sudo systemctl restart httpd.service
 $ sudo echo "<?php phpinfo(); ?>" > /var/www/html/index.php
 ```
 
-Enter http://your_ip_address/index.php in brower's address bar, if successful, you can see a long page listing php's infomation
+Enter http://your_ip_address/index.php in browser's address bar, if 
+successful, you can see a long page listing php's information
 
 ## 5. phpMyAdmin
 
@@ -194,8 +217,10 @@ Open config file
 ```cmd
 $ sudo vim /etc/httpd/conf.d/phpMyAdmin.conf
 ```
+Under those `<RequireAny>` tags, add `Require all granted` right above the
+`</RequireAny>` tags.
 
-Add these codes, then save and quit
+Better to install SSL support!
 
 ```conf
 <Directory /usr/share/phpMyAdmin/>
@@ -229,4 +254,5 @@ $ sudo systemctl restart httpd.service
 
 ### 5.4 Test phpMyAdmin installation
 
-Enter http://your_ip_address/phpmyadmin/ in address bar, log in by use mariadb's auth
+Enter http://your_ip_address/phpmyadmin/ in address bar, log in by 
+entering mariadb's auth you set before
