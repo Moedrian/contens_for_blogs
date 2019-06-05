@@ -229,23 +229,6 @@ Better to install SSL support!
         Require all granted
 </Directory>
 ```
-
-Change authentication type to http
-
-```cmd
-$ sudo vim /etc/phpMyAdmin/config.inc.php
-```
-
-locate here, then change texts like below
-
-```conf
-...
-/* Authentication type */
-$cfg['Servers'][$i]['auth_type'] = 'http';
-/* Server parameters */
-...
-```
-
 ### 5.3 Restart Apache to apply changes
 
 ```cmd
