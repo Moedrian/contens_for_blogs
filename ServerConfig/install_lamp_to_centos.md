@@ -172,6 +172,10 @@ $ sudo yum-config-manager --enable remi-php73
 
 ### 4.2 Install php and php extensions
 
+```bash
+$ sudo yum install php73-php
+```
+
 Choose the modules you need for your projects:
 
 ```bash
