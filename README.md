@@ -13,6 +13,7 @@
 
 * [Install LAMP Web Stack on CentOS 7 64 Bit](ServerConfig/install_lamp_to_centos.md)
 * [Redis Installation as a Cache](ServerConfig/redis_installation.md)
+* [Python Compiling Installation & Virtualenv](ServerConfig/python_installation.md)
 * [Secure the Server](ServerConfig/secure_server.md)
 
 ## Workplace Settings

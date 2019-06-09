@@ -7,7 +7,7 @@ To install redis from compilation, you need to install
 * `wget`, to download the source code
 * `compiler`, etc
     On Fedora or CentOS, `dnf/yum groupinstall "Development Tools"`, 
-    On Debian, `apt install build essential`
+    On Debian, `apt install build-essential`
 
 ## Download and Compilation
 
