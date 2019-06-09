@@ -1,11 +1,11 @@
-# Vagrant Initialization (with Virtual Box in Windows)
+# Basic Vagrant Initialization (with Virtual Box in Windows)
 
 ## Installation
 
 The official sites of Vagrant is [here](https://www.vagrantup.com/downloads.html) and VirtualBox's is [here](https://www.virtualbox.org/wiki/Downloads).
 Following their default option to install is rather practical. After
 the installation is complete, make sure the Environment variables 
-contains vagrant.exe's path. To assure this, You may be prompted to 
+contains vagrant.exe's path. To assure this, You may be asked to 
 restart your PC.
 
 ## Get Box Preparation Ready
@@ -70,8 +70,96 @@ the comments in the Vagrantfile as well as documentation on
 `vagrantup.com` for more information on using Vagrant.
 ```
 
-## How to Edit Vagrantfile
+## How to Edit the Vagrantfile
 
 The `Vagrantfile` generated defines the behavior of the virtual machine,
 from host name to network settings, and it is written in Ruby, so please
 make sure the `end`s are closed properly after your editing.
+
+Let's fire up **vim** and edit it. The comments are pretty detailed, but there
+are more customization options.
+
+### Naming
+
+Choose a fancy hostname and box name by adding these lines
+
+```Ruby
+config.vm.box = "Amadeus"    # box added before
+config.vm.hostname = "Rome"
+config.vm.define "Amadeus"   # Pay Attention to THIS line
+```
+
+And between `config.vm.provider "virtualbox" do |vb|` and its paired `end`
+add these lines
+
+```Ruby
+vb.gui = false
+vb.name = "Amadeus"
+```
+
+### Network
+
+`guest` in this scenario refers to the Vagrant virtual machine, while
+`host` means your Windows.
+
+```Ruby
+config.vm.network "forwarded_port", guest: 80, host: 8080
+config.vm.network "forwarded_port", guest: 5000, host: 5050
+
+config.vm.network "private_network", ip: 192.168.22.22
+```
+
+### Shared Folder
+
+Or `synced folder`, according to Vagrantfile. The former one is host's
+directory, the latter is virtual machine's. 
+
+```Ruby
+config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
+```
+
+### Finally...
+
+The whole Vagrantfile goes like below
+
+```Ruby
+Vagrant.configure("2") do |config|
+    config.vm.box = "Amadeus"
+    config.vm.hostname = "metro"
+    config.vm.define "Amadeus"
+
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+    config.vm.network "forwarded_port", guest: 5000, host: 5050
+
+    config.vm.network "private_network", ip: 192.168.22.22
+
+    config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.gui = false
+        vb.name = "Amadeus"
+    end
+end
+```
+
+Before `vagrant up`, you should install plugin vbguest
+
+```cmd
+C:\Codes\Vagrant\Amadeus>vagrant plugin install vagrant-vbguest
+```
+
+The outputs are below, give the permission when the prompting window
+pops up.
+
+```cmd
+Installing the 'vagrant-vbguest' plugin. This can take a few minutes...
+Fetching: micromachine-2.0.0.gem (100%)
+Fetching: vagrant-vbguest-0.18.0.gem (100%)
+Installed the plugin 'vagrant-vbguest (0.18.0)'!
+```
+
+Then type `vagrant up`, notice there might be a kernel compilation
+process for kernel. After that, everything shall be fine.
+
+Use `vagrant ssh` to access the virtual machine under the `Amadeus`
+directory.
