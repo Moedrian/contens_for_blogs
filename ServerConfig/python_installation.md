@@ -57,6 +57,8 @@ Python 3.7.3
 
 ## Python Virtual Environment
 
+First, install...
+
 ```cmd
 $ python3.7 -m pip --user install virtualenv
 ```
@@ -66,23 +68,30 @@ $ python3.7 -m pip --user install virtualenv
 Locate to the project directory, run
 
 ```cmd
-$ python3.7 -m virtualenv some_fancy_env_name
+$ python3.7 -m venv path/to/venv_name
 ```
+**<pre>-- ATTENTION HERE VAGRANT WINDOWS USERS --</pre>**
+<pre>
+If you are working on Vagrant shared folder, you may encounter a
+protocol error when trying to run the command above. To resolve this
+error, use `rm -r path/to/venv_name` to delete the environment you
+created before, exit ssh and `vagrant halt`.
 
-If there are error messages, especially in vagrant virtual machine, try
+Then launch a cmd or other alike tools granted with admin privilege,
+locate to the vagrant instance folder and `vagrant up`, re-run that
+env-creating command above. Now everything shall works fine.
+</pre>
+**<pre>-- ATTENTION HERE VAGRANT WINDOWS USERS --</pre>**
 
-```cmd
-$ python3.7 -m virtualenv env_name --always-copy
-```
-
-After executing these commands, I suggest a system restarting. Once
-the system is ready, re-locate to the directory before, run
+To activate the virtual environment, type
 
 ```cmd
 $ source env_name/bin/activate
 ```
 
-to activate the virtual environment. Now in front of the `$` is a pair of
-parentheses contains your env name you set before.
+now in front of the `$` is a pair of parentheses contains your env
+name you set before.
 
 If you want to leave, simply run `deactivate`.
+
+### Have fun coding!
