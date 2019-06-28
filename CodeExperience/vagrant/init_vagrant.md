@@ -106,7 +106,7 @@ vb.name = "Amadeus"
 config.vm.network "forwarded_port", guest: 80, host: 8080
 config.vm.network "forwarded_port", guest: 5000, host: 5050
 
-config.vm.network "private_network", ip: 192.168.22.22
+config.vm.network "private_network", ip: "192.168.22.22"
 ```
 
 ### Shared Folder
@@ -131,7 +131,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 80, host: 8080
     config.vm.network "forwarded_port", guest: 5000, host: 5050
 
-    config.vm.network "private_network", ip: 192.168.22.22
+    config.vm.network "private_network", ip: "192.168.22.22"
 
     config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
 
@@ -163,3 +163,5 @@ process for kernel. After that, everything shall be fine.
 
 Use `vagrant ssh` to access the virtual machine under the `Amadeus`
 directory.
+
+To shutdown the virtual machine, use `vagrant halt`.
