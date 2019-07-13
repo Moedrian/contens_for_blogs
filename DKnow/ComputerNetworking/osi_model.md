@@ -2,7 +2,7 @@
 
 ## Layers
 
-<pre>
+<center><pre>
 +--------------------+-------------------+--------------+
 | Application Layer  |                   |              |
 +--------------------+                   |              |
@@ -18,9 +18,10 @@
 +--------------------+-------------------+              |
 | Physical Layer     | Symbol            |              |
 +--------------------+-------------------+--------------+
-</pre>
+</pre></center>
 
 ---
+
 ### 1. Physical Layer
 
 #### 1.1 Role
@@ -31,11 +32,11 @@
 
 What is transmitted in this layer is **bit**, i.e.
 
-<pre>
+<center><pre>
 +----+----+----+
 |0011|0100|1001|
 +----+----+----+
-</pre>
+</pre></center>
 
 #### 1.3 The functions of Physical Layer
 
@@ -68,7 +69,7 @@ And it has two sublayers:
 
 #### 2.2 The form of information
 
-Frames.
+Frame.
 
 > In the OSI model of computer networking, a frame is the protocol data unit at the data link layer. Frames are the result of the final layer of encapsulation before the data is transmitted over the physical layer.
 
@@ -88,15 +89,107 @@ Frames.
 
 #### 2.4 Examples
 
-Switches, Bridges
+Switches, Bridges.
 
 ### 3. Network Layer
+
+#### 3.1 Role
+
+> The network layer provides the functional and procedural means of transferring variable length data sequences (called packets) from one node to another connected in "different networks".
+
+>  It also takes care of packet routing i.e. selection of the shortest path to transmit the packet, from the number of routes available. The sender & receiver’s IP address are placed in the header by network layer.
+
+#### 3.2 Functions of Network Layer
+
+| Function | Explanation |
+|:---|:---|
+| Routing | The Network Layer determines which route is suitable from source to destination. |
+| Logical Addressing | The Network Layer maintains an address scheme to identify devices on internetwork uniquely. |
+
+#### 3.3 The form of information
+
+Packet. A packet consists of control information and user data, which is also known as payload.
+
+#### 3.4 Examples
+
+Routers.
+
 ---
+
 ### 4. Transport Layer
+
+#### 4.1 Role
+
+End to End delivery of the complete message. Transport layer also provides the acknowledgement of the successful data transmission and re-transmits the data if an error is found.
+
+#### 4.2 Functions of Transport Layer
+
+| Function | Explanation |
+|:---|:---|
+| Segmentation and Desegmentation (Reassembly) | This layer accepts the message from Session Layer then breaks message into small units. The destination station within this layer will reassembly these units. |
+| Service Point Addressing | To deliver the message to correct process. |
+
+#### 4.3 The form of information
+
+Segment.
+
+#### 4.4 Examples
+
+The Transmission Control Protocol (TCP) and the User Datagram Protocol are commonly categorized as layer-4 protocols within OSI.
+
 ---
+
 ### 5. Session Layer
+
+#### 5.1 Role
+
+* Connection establishment 
+* Maintenance of sessions
+* Authentication
+* Security Assurance
+
+#### 5.2 The functions of Session Layer
+
+| Function | Explanation |
+|:---|:---|
+| Session establishment, maintenance and termination | This layer allow the two processes to establish, use and terminate a connection.
+| Synchronization | This layer allows a process to add checkpoints which are considered as synchronization points into the data to identify the error so that the integrity of data can be kept. |
+| Dialog Controller | To allow two systems start a simplex, half-duplex or full-duplex connection. |
+
+#### 5.3 Examples
+
+Application environments that use Remote Procedure Calls (RPC).
+
 ### 6. Presentation Layer
+
+#### 6.1 Role
+
+The data from Application Layer is extracted here and manipulated as per the required format to transmit over the network.
+
+#### 6.2 The functions of Presentation Layer
+
+| Function | Explanation |
+|:---|:---|
+| Translation | E.g. ASCII to EBCDIC |
+| Encryption/Decryption | E.g. Base64, Sha1, etc |
+| Compression/Extraction | To reduces the number of bits. |
+
 ### 7. Application Layer
+
+#### 7.1 Role
+
+To produce the data.
+
+#### 7.2 The functions of Application Layer
+
+* Network Virtual Terminal
+* FTAM-File transfer access and management
+* Mail Services
+* Directory Services
+
+#### 7.3 Examples
+
+Browsers, Messengers, etc.
 
 ## Reference
 
