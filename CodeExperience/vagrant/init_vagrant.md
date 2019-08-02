@@ -1,4 +1,4 @@
-# Basic Vagrant Initialization (with Virtual Box in Windows)
+# Basic Vagrant Initialization (with VirtualBox in Windows)
 
 ## Installation
 
@@ -28,7 +28,7 @@ like this
 
 ![CentOS Release](../../assets/vagrant/CentOSRelease.png)
 
-then go to virtualbox Externally hosted site, as demonstrated below
+then go to VirtualBox Externally hosted site, as demonstrated below
 
 ![CentOS Files](../../assets/vagrant/CentOSFiles.png)
 
@@ -90,12 +90,16 @@ config.vm.define "Amadeus"   # Pay Attention to THIS line
 ```
 
 And between `config.vm.provider "virtualbox" do |vb|` and its paired `end`
-add these lines
+add these lines. Anf if you want to customize the memory and cpu usages
+allocated to the box, you can define them here.  
 
 ```Ruby
 vb.gui = false
 vb.name = "Amadeus"
+vb.memory = "2048"
+vb.cpus = 2
 ```
+
 
 ### Network
 
@@ -124,21 +128,23 @@ The whole Vagrantfile goes like below
 
 ```Ruby
 Vagrant.configure("2") do |config|
-    config.vm.box = "Amadeus"
-    config.vm.hostname = "metro"
-    config.vm.define "Amadeus"
+  config.vm.box = "Amadeus"
+  config.vm.hostname = "Rome"
+  config.vm.define "Amadeus"
 
-    config.vm.network "forwarded_port", guest: 80, host: 8080
-    config.vm.network "forwarded_port", guest: 5000, host: 5050
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 5000, host: 5050
 
-    config.vm.network "private_network", ip: "192.168.22.22"
+  config.vm.network "private_network", ip: "192.168.22.22"
 
-    config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
+  config.vm.synced_folder "C:/Codes/Projects", "/home/projects"
 
-    config.vm.provider "virtualbox" do |vb|
-        vb.gui = false
-        vb.name = "Amadeus"
-    end
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.name = "Amadeus"
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
 end
 ```
 
