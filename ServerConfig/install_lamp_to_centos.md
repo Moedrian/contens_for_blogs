@@ -120,15 +120,29 @@ $ sudo vim /etc/yum.repos.d/MariaDB.repo
 Then type or copy & paste these text into it:
 
 ```text
-# MariaDB 10.3 CentOS repository list
+# MariaDB 10.4 CentOS repository list
 [mariadb]
 name = MariaDB
-baseurl = http://yum.mariadb.org/10.3/centos7-amd64
+baseurl = http://yum.mariadb.org/10.4/centos7-amd64
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 ```
 
 You can always find newest contents [here](https://downloads.mariadb.org/mariadb/repositories)
+
+Sometimes the downloading speed may be slow, you can change the `baseurl` to the mirror that corresponds to your current religion. Find mirror list [here](https://mariadb.com/kb/en/library/mirror-sites-for-mariadb/).
+
+For example, let's choose a Netherland mirror
+
+`http://mirror.ehv.weppel.nl`.
+
+First, change the original `baseurl` to
+
+`http://mirror.ehv.weppel.nl/mariadb/yum/10.4/centos7-amd64`
+
+Then modify the `gpgkey` to
+
+`http://mirror.ehv.weppel.nl/mariadb/yu,/RPM-GPG-KEY-MariaDB`
 
 ### 3.2 Install MariaDB and enable its service
 
@@ -176,14 +190,7 @@ $ sudo yum-config-manager --enable remi-php73
 $ sudo yum install php73-php
 ```
 
-Choose the modules you need for your projects:
-
-```bash
-$ sudo yum install php-curl php-ldap php-zip php-fileinfo php-opcache \
-php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb \
-php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring \
-php-mcrypt php-xml -y
-```
+You can install some useful php extensions you need freely.
 
 And don't forget the composer, the dependency manager
 
@@ -222,17 +229,17 @@ Open config file
 $ sudo vim /etc/httpd/conf.d/phpMyAdmin.conf
 ```
 Under those `<RequireAny>` tags, add `Require all granted` right above the
-`</RequireAny>` tags.
+`</RequireAny>` tags. More practically and for security, identify your ip 
+then add `Require ip YOUR_IP_ADDRESS` instead of granting all.
 
 Better to install SSL support!
 
-```conf
-<Directory /usr/share/phpMyAdmin/>
-        Options none
-        AllowOverride Limit
-        Require all granted
-</Directory>
+Then install php extensions for phpMyAdmin:
+
+```cmd
+$ sudo yum install php73-php-mbstring php73-php-mysql -y
 ```
+
 ### 5.3 Restart Apache to apply changes
 
 ```cmd
