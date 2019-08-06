@@ -11,8 +11,8 @@
 
 ## Server Configuration
 
-* [Install LAMP Web Stack on CentOS 7 x64](ServerConfig/install_lamp_to_centos.md)
-* [Install LNMP Web Stack on CentOS 7 x64]()
+* [Configure Apache-MariaDB-PHP Web Stack on CentOS 7 x86_64](ServerConfig/install_lamp_to_centos.md)
+* [Configure Nginx-PostgreSQL-PHP Web Stack on Fedora 30 x86_64]() `@todo`
 * [Apache Optimization]() `@todo`
 * [PHP Optimization]() `@todo`
 * [MariaDB/MySQL Optimization]() `@todo`
@@ -20,6 +20,7 @@
 * [Redis Installation as a Cache](ServerConfig/redis_installation.md)
 * [Python Compiling Installation & Virtualenv](ServerConfig/python_installation.md)
 * [Secure the Server](ServerConfig/secure_server.md)
+* [VSCode Remote Configuration]() `@todo`
 
 ## Workplace Settings
 
@@ -49,7 +50,7 @@
 
 * [Basic Concepts]() `@todo`
 * [Layers of OSI Model](DKnow/ComputerNetworking/osi_model.md)
-* [TCP & UDP, How They Work]() `@todo`
+* [TCP & UDP, How They Work]()
 * [Websocket Research]() `@todo`
 
 ### Data Structure
