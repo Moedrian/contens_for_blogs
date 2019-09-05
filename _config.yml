@@ -1,1 +1,9 @@
-theme: jekyll-theme-hacker
+title: It Works
+email: ikamitse@gmail.com
+description: Overarchingww
+url: https://marogatari.github.io
+twitter_username: Moedrian
+github_username: marogatari
+
+remote_theme: codeasashu/hcz-jekyll-blog
+theme: hcz-jekyll-blog
